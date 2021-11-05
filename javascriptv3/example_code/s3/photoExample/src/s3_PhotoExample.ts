@@ -22,18 +22,20 @@ const {
 const { S3Client, PutObjectCommand, ListObjectsCommand, DeleteObjectCommand, DeleteObjectsCommand } = require("@aws-sdk/client-s3");
 
 // Set the AWS Region
-const REGION = "REGION"; //REGION
+const REGION = "REGION";
+const IDENTITY_POOL_ID = "IDENTITY_POOL_ID";
+const BUCKET_NAME = "BUCKET_NAME";
 
 // Initialize the Amazon Cognito credentials provider
 const s3 = new S3Client({
   region: REGION,
   credentials: fromCognitoIdentityPool({
     client: new CognitoIdentityClient({ region: REGION }),
-    identityPoolId: "IDENTITY_POOL_ID", // IDENTITY_POOL_ID
+    identityPoolId: IDENTITY_POOL_ID, 
   }),
 });
 
-const albumBucketName = "BUCKET_NAME"; //BUCKET_NAME
+const albumBucketName = BUCKET_NAME;
 // snippet-end:[s3.JavaScript.photoAlbumExample.configV3]
 // snippet-start:[s3.JavaScript.photoAlbumExample.listAlbumsV3]
 
