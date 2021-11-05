@@ -12,6 +12,7 @@ Inputs (replace in code):
 Running the code:
 node s3_PhotoExample.js
 */
+
 // snippet-start:[s3.JavaScript.photoAlbumExample.completeV3]
 // snippet-start:[s3.JavaScript.photoAlbumExample.configV3]
 // Load the required clients and packages
@@ -21,21 +22,16 @@ const {
 } = require("@aws-sdk/credential-provider-cognito-identity");
 const { S3Client, PutObjectCommand, ListObjectsCommand, DeleteObjectCommand, DeleteObjectsCommand } = require("@aws-sdk/client-s3");
 
-// Set the AWS Region
-const REGION = "REGION";
-const IDENTITY_POOL_ID = "IDENTITY_POOL_ID";
-const BUCKET_NAME = "BUCKET_NAME";
-
 // Initialize the Amazon Cognito credentials provider
 const s3 = new S3Client({
-  region: REGION,
+  region: process.env.REGION,
   credentials: fromCognitoIdentityPool({
-    client: new CognitoIdentityClient({ region: REGION }),
-    identityPoolId: IDENTITY_POOL_ID, 
+    client: new CognitoIdentityClient({ region: process.env.REGION }),
+    identityPoolId: process.env.IDENTITY_POOL_ID, 
   }),
 });
 
-const albumBucketName = BUCKET_NAME;
+const albumBucketName = process.env.BUCKET_NAME;
 // snippet-end:[s3.JavaScript.photoAlbumExample.configV3]
 // snippet-start:[s3.JavaScript.photoAlbumExample.listAlbumsV3]
 
