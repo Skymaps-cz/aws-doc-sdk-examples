@@ -151,7 +151,7 @@ const viewAlbum = async (albumName) => {
       document.getElementById("app").innerHTML = getHtml(htmlTemplate);
     } else {
       console.log(data);
-      const href = "https://s3." + REGION + ".amazonaws.com/";
+      const href = "https://s3." + process.env.REGION + ".amazonaws.com/";
       const bucketUrl = href + albumBucketName + "/";
       const photos = data.Contents.map(function (photo) {
         const photoKey = photo.Key;
